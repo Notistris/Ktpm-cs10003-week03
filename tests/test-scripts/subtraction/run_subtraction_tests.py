@@ -73,6 +73,42 @@ TEST_CASES = (
     ),
 )
 
+# Local defect IDs used until the corresponding GitHub issues are created.
+RELATED_BUGS = {
+    **{
+        ("1", test_id): "[#2](https://github.com/Notistris/Ktpm-cs10003-week03/issues/2)"
+        for test_id in ("TC-SUB-009", "TC-SUB-010")
+    },
+    ("4", "TC-SUB-007"): "[#3](https://github.com/Notistris/Ktpm-cs10003-week03/issues/3)",
+    **{
+        ("7", test_id): "[#4](https://github.com/Notistris/Ktpm-cs10003-week03/issues/4)"
+        for test_id in (
+            "TC-SUB-001",
+            "TC-SUB-002",
+            "TC-SUB-003",
+            "TC-SUB-005",
+            "TC-SUB-006",
+            "TC-SUB-007",
+            "TC-SUB-008",
+            "TC-SUB-009",
+        )
+    },
+    **{
+        ("8", test_id): "[#5](https://github.com/Notistris/Ktpm-cs10003-week03/issues/5)"
+        for test_id in (
+            "TC-SUB-001",
+            "TC-SUB-002",
+            "TC-SUB-004",
+            "TC-SUB-005",
+            "TC-SUB-006",
+            "TC-SUB-007",
+            "TC-SUB-008",
+            "TC-SUB-009",
+            "TC-SUB-010",
+        )
+    },
+}
+
 
 def parse_items(values: Iterable[str]) -> list[str]:
     """Allow both space-separated and comma-separated CLI values."""
@@ -265,7 +301,9 @@ def write_report(
             related_bug = "None"
             note = ""
         elif result.status == "Fail":
-            related_bug = "Pending GitHub issue"
+            related_bug = RELATED_BUGS.get(
+                (result.build, result.test_id), "Pending GitHub issue"
+            )
             note = f"Expected {result.expected}; actual {result.actual}"
         else:
             related_bug = "Pending GitHub issue"

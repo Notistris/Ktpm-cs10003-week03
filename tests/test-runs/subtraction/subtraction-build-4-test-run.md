@@ -14,7 +14,7 @@
 | TC-SUB-004 | Subtraction | thu | Pass | None |  |
 | TC-SUB-005 | Subtraction | thu | Pass | None |  |
 | TC-SUB-006 | Subtraction | thu | Pass | None |  |
-| TC-SUB-007 | Subtraction | thu | Fail | Pending GitHub issue | Expected Answer: 8.5; actual Answer: 8 |
+| TC-SUB-007 | Subtraction | thu | Fail | [#3](https://github.com/Notistris/Ktpm-cs10003-week03/issues/3) | Expected Answer: 8.5; actual Answer: 8 |
 | TC-SUB-008 | Subtraction | thu | Pass | None |  |
 | TC-SUB-009 | Subtraction | thu | Pass | None |  |
 | TC-SUB-010 | Subtraction | thu | Pass | None |  |
