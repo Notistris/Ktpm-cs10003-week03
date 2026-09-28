@@ -28,7 +28,7 @@ Screenshot / video / console log đính kèm từ Test Run Build 9 (lỗi Node i
 ---
 **Labels nên gắn:**
 - type: bug
-- module: calculator
+- module: concatenate
 - severity: blocker
 - priority: P1
 - status: new

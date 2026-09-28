@@ -30,7 +30,7 @@ Screenshot / video / console log đính kèm từ Test Run Build 1.
 ---
 **Labels nên gắn:**
 - type: bug
-- module: calculator
+- module: concatenate
 - severity: major
 - priority: P1
 - status: new
