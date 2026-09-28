@@ -36,3 +36,4 @@ Screenshot / video / console log đính kèm từ Test Run Build 3.
 - priority: P2
 - status: new
 - found-by: test-case
+- result: fail

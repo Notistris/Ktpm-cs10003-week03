@@ -33,3 +33,4 @@ Screenshot / video / console log đính kèm từ Test Run Build 9 (lỗi Node i
 - priority: P1
 - status: new
 - found-by: test-case
+- result: fail

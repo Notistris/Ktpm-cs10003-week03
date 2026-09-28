@@ -35,3 +35,4 @@ Screenshot / video / console log đính kèm từ Test Run Build 8.
 - priority: P2
 - status: new
 - found-by: test-case
+- result: fail
