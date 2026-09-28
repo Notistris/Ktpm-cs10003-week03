@@ -219,13 +219,18 @@ def execute_case(
                 screenshot_path = str(screenshot)
             except WebDriverException:
                 screenshot_path = ""
+        if build == "9":
+            error_message = "Second number and Calculate controls are hidden/disabled in Build 9"
+        else:
+            detail = str(error).strip().splitlines()[0] if str(error).strip() else "Unknown error"
+            error_message = f"{type(error).__name__}: {detail}"
         return TestResult(
             case.test_id,
             build,
             "Blocked",
             expected,
             "Test could not complete",
-            note=f"{type(error).__name__}: {error}",
+            note=error_message,
             evidence=screenshot_path,
         )
 
@@ -234,19 +239,38 @@ def markdown_cell(value: str) -> str:
     return value.replace("|", "\\|").replace("\n", " ")
 
 
-def write_report(path: Path, results: list[TestResult], browser: str, base_url: str) -> None:
+def write_report(
+    path: Path,
+    results: list[TestResult],
+    browser: str,
+    base_url: str,
+    tester: str,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    builds = ", ".join(dict.fromkeys(result.build for result in results))
     lines = [
-        "# Subtraction Test Run",
+        f"# Test Run: Subtraction — Build {builds}",
         "",
         f"- **Executed at:** {datetime.now().astimezone().isoformat(timespec='seconds')}",
+        f"- **Tester:** {tester}",
         f"- **Browser:** {browser}",
         f"- **URL:** {base_url}",
+        f"- **Build:** {builds}",
         "",
-        "| Test Case ID | Module | Build | Result | Expected | Actual | Related Bug | Note | Evidence |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Test Case ID | Module | Tester | Result | Related Bug | Note |",
+        "|---|---|---|---|---|---|",
     ]
     for result in results:
+        if result.status == "Pass":
+            related_bug = "None"
+            note = ""
+        elif result.status == "Fail":
+            related_bug = "Pending GitHub issue"
+            note = f"Expected {result.expected}; actual {result.actual}"
+        else:
+            related_bug = "Pending GitHub issue"
+            note = f"Execution blocked: {result.note or result.actual}"
+
         lines.append(
             "| "
             + " | ".join(
@@ -254,13 +278,10 @@ def write_report(path: Path, results: list[TestResult], browser: str, base_url: 
                 for value in (
                     result.test_id,
                     "Subtraction",
-                    result.build,
+                    tester,
                     result.status,
-                    result.expected,
-                    result.actual,
-                    "None",
-                    result.note,
-                    result.evidence,
+                    related_bug,
+                    note,
                 )
             )
             + " |"
@@ -289,6 +310,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--base-url", default=DEFAULT_URL)
     parser.add_argument("--timeout", type=float, default=10.0, help="Wait timeout in seconds.")
     parser.add_argument("--report", type=Path, help="Optional Markdown test-run output path.")
+    parser.add_argument(
+        "--report-dir",
+        type=Path,
+        help="Write one Markdown report per build into this directory.",
+    )
+    parser.add_argument("--tester", default="Automation", help="Tester name used in the report.")
     parser.add_argument("--evidence-dir", type=Path, help="Save screenshots for failed/blocked tests.")
     parser.add_argument("--list", action="store_true", help="List available tests and exit.")
     return parser
@@ -345,8 +372,16 @@ def main() -> int:
     print(f"\nTotal: {len(results)} | Pass: {passed} | Fail: {failed} | Blocked: {blocked}")
 
     if args.report:
-        write_report(args.report, results, args.browser, args.base_url)
+        write_report(args.report, results, args.browser, args.base_url, args.tester)
         print(f"Report: {args.report}")
+
+    if args.report_dir:
+        for build in builds:
+            build_results = [result for result in results if result.build == build]
+            build_label = "prototype" if build == "Prototype" else f"build-{build}"
+            report_path = args.report_dir / f"subtraction-{build_label}-test-run.md"
+            write_report(report_path, build_results, args.browser, args.base_url, args.tester)
+            print(f"Report: {report_path}")
 
     return 0 if failed == 0 and blocked == 0 else 1
 

@@ -78,6 +78,15 @@ python tests\test-scripts\subtraction\run_subtraction_tests.py --builds all
 
 Each test/build pair is reported separately. Prototype is the default build.
 
+Create one Markdown report per build:
+
+```powershell
+python tests\test-scripts\subtraction\run_subtraction_tests.py `
+  --builds all `
+  --tester "Your Name" `
+  --report-dir tests\test-runs
+```
+
 ## Browser and timing options
 
 Choose another browser or increase the wait timeout:
@@ -96,6 +105,7 @@ The report path is optional. When supplied, the runner creates a Markdown table 
 ```powershell
 python tests\test-scripts\subtraction\run_subtraction_tests.py `
   --builds Prototype,7,8 `
+  --tester "Your Name" `
   --report tests\test-runs\subtraction-test-run.md `
   --evidence-dir tests\test-runs\evidence\subtraction
 ```
@@ -112,6 +122,8 @@ Screenshots are saved only for `Fail` or `Blocked` results. Review failures manu
 --base-url URL                  Override the calculator URL
 --timeout SECONDS               Selenium wait timeout (default: 10)
 --report PATH                   Write a Markdown test-run report
+--report-dir DIRECTORY          Write one Markdown report for each build
+--tester NAME                   Tester name written to the report
 --evidence-dir PATH             Save failure/blocked screenshots
 --list                          List test cases and exit
 ```
