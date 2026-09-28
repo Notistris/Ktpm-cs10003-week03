@@ -1,0 +1,3 @@
+# Nhận xét và đánh giá việc sử dụng AI
+
+Trong quá trình thực hiện bài tập kiểm thử phần mềm dựa trên file log audit, AI đã thể hiện độ đắc lực cao trong việc tự động hóa kịch bản Playwright, định dạng báo cáo Markdown và lập hồ sơ lỗi. Tuy nhiên có thể thấy AI đã bộc lộ những hạn chế nhất định, ví dụ như nếu người dùng prompt AI không đầy đủ thì AI sẽ không thể hiểu được toàn bộ ý muốn của người dùng, làm cho người dùng phải viết thêm prompt để chỉnh sửa. Vì thế bài học quan trọng nhất được rút ra về nguyên tắc hợp tác giữa con người và AI là không bao giờ được phó mặc toàn bộ quy trình chuyên môn cho máy móc. Người dùng bắt buộc phải biết cách viết prompt cho chuẩn xác và phải định hướng, kiểm duyệt lại những gì AI đã thực thi.  

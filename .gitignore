@@ -1,9 +1,18 @@
-node_modules/# Python virtual environments
+# Dependencies
+node_modules/
+tests/test-scripts/TC-Add/scripts/node_modules/
+tests/test-scripts/TC_Add/scripts/node_modules/
+
+# Test reports & results
+tests/test-scripts/TC-Add/scripts/playwright-report/
+tests/test-scripts/TC-Add/scripts/test-results/
+tests/test-scripts/TC_Add/scripts/playwright-report/
+tests/test-scripts/TC_Add/scripts/test-results/
+
+# Python virtual environments & caches
 .venv/
 venv/
 env/
-
-# Python caches and generated files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -27,3 +36,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Bug report issue template
+tests/bug-reports/.github/
