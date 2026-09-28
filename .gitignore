@@ -1,0 +1,8 @@
+.vscode/
+tests/bug-reports/.github/
+tests/test-scripts/TC-Add/scripts/node_modules/
+tests/test-scripts/TC-Add/scripts/playwright-report/
+tests/test-scripts/TC-Add/scripts/test-results/
+tests/test-scripts/TC_Add/scripts/node_modules/
+tests/test-scripts/TC_Add/scripts/playwright-report/
+tests/test-scripts/TC_Add/scripts/test-results/

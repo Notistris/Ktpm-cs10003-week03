@@ -1,0 +1,26 @@
+{
+  "name": "ktpm-cs10003-week03",
+  "version": "1.0.0",
+  "description": "Playwright Automated Tests for Basic Calculator with customizable build versions",
+  "scripts": {
+    "test": "node run-tests.js all",
+    "test:all": "node run-tests.js all",
+    "test:interactive": "node run-tests.js",
+    "test:playwright": "playwright test",
+    "test:prototype": "node run-tests.js 0",
+    "test:build-1": "playwright test --project=build-1",
+    "test:build-2": "playwright test --project=build-2",
+    "test:build-3": "playwright test --project=build-3",
+    "test:build-4": "playwright test --project=build-4",
+    "test:build-5": "playwright test --project=build-5",
+    "test:build-6": "playwright test --project=build-6",
+    "test:build-7": "playwright test --project=build-7",
+    "test:build-8": "playwright test --project=build-8",
+    "test:build-9": "playwright test --project=build-9",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
