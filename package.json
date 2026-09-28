@@ -46,5 +46,8 @@
     "yargs": "^18.2.0",
     "yargs-parser": "^22.0.0",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "pdf-parse": "^2.4.5"
   }
 }
