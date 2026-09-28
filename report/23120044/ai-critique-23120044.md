@@ -1,0 +1,3 @@
+Trong bài tập này, AI hỗ trợ rất tốt và nhanh trong việc tạo 10 test case, viết script Playwright tự động hóa, chạy test trên 9 build và xuất báo cáo bug đúng mẫu. 
+Tuy nhiên ban đầu script bị đứng ở Build 4 và Build 9 do element bị disable hoặc ẩn, nên mình phải chỉnh lại code để catch lỗi phù hợp. Và khi viết TC và các file report thì có sự mismatch trong ngôn ngữ do em không specify cụ thể. Và khi có sự thay đổi trong đường dẫn thư mục làm việc thì agent không thể tự nhận biết và thay đổi sang đường dẫn thư mực mới.  
+Qua đó em thấy AI giúp tiết kiệm khoảng 80% thời gian làm báo cáo nhưng bản thân vẫn phải kiểm tra kỹ kết quả và tự định hướng công việc.
